@@ -10,6 +10,7 @@ class OrderItem < ActiveRecord::Base
 
 	def unit_price
   	# Persisted: Returns true if the record is persisted, i.e. it’s not a new record and it was not destroyed, otherwise returns false.
+  	# This means that once the product is added to our cart, if the product changes price the user will still be able to buy the product at the previous price. This is necessary because if the price changes while the user is in checkout, there could be a mismatch between the product price on the cart page and the product price on the checkout page.
   	if persisted?
   		self[:unit_price]
   	else
